@@ -1,11 +1,11 @@
 name: Tags
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
-
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types: 
+      - completed
 jobs:
   build:
     runs-on: ubuntu-latest
