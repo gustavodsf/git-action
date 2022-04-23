@@ -52,9 +52,9 @@ jobs:
           git checkout ${{ github.event.pull_request.head.ref }}
       - name: Prepare CHANGELOG
         run: |
-          echo "${{ github.event.pull_request.body }}" | csplit -s - "/##/"
+          echo "${{ github.event.pull_request.body }}" | csplit -s - "/###/"
           echo "# Changelog
-          ## ${{ env.VERSION }}
+          ### ${{ env.VERSION }}
           " >> CHANGELOG.tmp
           grep "^*" xx01 >> CHANGELOG.tmp
           grep -v "^# " CHANGELOG.md >> CHANGELOG.tmp
