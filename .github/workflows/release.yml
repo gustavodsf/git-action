@@ -42,6 +42,7 @@ jobs:
           export CURRENT=$(perl -ne 'print "$1\n" if /"version":\s*"(.*?)"/' package.json)
           export NEW_VERSION=$(semver bump ${{ env.RELEASE }} $CURRENT)
           echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
+          echo CURRENT
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup git
@@ -52,8 +53,8 @@ jobs:
           git checkout ${{ github.event.pull_request.head.ref }}
       - name: Prepare CHANGELOG
         run: |
-          echo "${{ github.event.pull_request.body }}" | csplit -s - "/###/"
-          echo "# Changelog
+          echo "${{ github.event.pull_request.body }}" | csplit -s - "/##/"
+          echo "## Changelog
           ### ${{ env.VERSION }}
           " >> CHANGELOG.tmp
           grep "^*" xx01 >> CHANGELOG.tmp
