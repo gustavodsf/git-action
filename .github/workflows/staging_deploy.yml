@@ -1,8 +1,8 @@
-name: Tags
+name: Deploy-Dev
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["Tags"]
     branches: [main]
     types: 
       - completed
@@ -12,4 +12,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run a one-line script
-      run: lats create a tag!
+      run: echo Lest deploy the new version of the code!
