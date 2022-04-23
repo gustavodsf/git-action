@@ -9,7 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: "${{ github.event.workflow_run.conclusion == 'success' && !contains(github.event.head_commit.message, 'deploy skip')}} "
     steps:
     - uses: actions/checkout@v2
     - name: Run a one-line script
-      run: lats create a tag!
+      run: lets create a tag!
